@@ -128,35 +128,25 @@
     </div>
     <ul class='item-lists'>
 
-     
-          <% @items.each do |item| %>
+      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <li class='list'>
-        <%= link_to '#' do %>
+        <%= link_to "#" do %>
         <div class='item-img-content'>
-        <%# ①商品画像 %>
-        <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" if item.image.attached? %>
-        <%# <%= image_tag "item-sample.png", class: "item-img" %>
-          
-        <%# ②「sold out」表示 %>
+          <%= image_tag "item-sample.png", class: "item-img" %>
+
           <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
-          <span>Sold Out!!</span>
+            <span>Sold Out!!</span>
           </div>
-          <% end %>
           <%# //商品が売れていればsold outを表示しましょう %>
 
         </div>
-
-        <%# ③商品名 %>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%= item.name %>
+            <%= "商品名" %>
           </h3>
-
-        <%# ④商品の値段 %>
-        <%# ⑤商品の配送料負担 %>
           <div class='item-price'>
-            <span><%= item.price %>円<br><%= item.shipping_fee_status.name %></span>
+            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
@@ -165,7 +155,7 @@
         </div>
         <% end %>
       </li>
-
+      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <%# 商品がある場合は表示されないようにしましょう %>
