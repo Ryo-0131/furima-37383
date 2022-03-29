@@ -136,6 +136,7 @@
         <%# ①商品画像 %>
         <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" if item.image.attached? %>
         <%# <%= image_tag "item-sample.png", class: "item-img" %>
+        
           
         <%# ②「sold out」表示 %>
           <%# 商品が売れていればsold outを表示しましょう %>
@@ -165,10 +166,8 @@
         </div>
         <% end %>
       </li>
-
-
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
+      
+      <% if @items.blank? then %>
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -181,13 +180,13 @@
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
+              <% end %>
             </div>
           </div>
         </div>
         <% end %>
       </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+
     </ul>
   </div>
   <%# /商品一覧 %>
