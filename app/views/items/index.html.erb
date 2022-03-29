@@ -136,7 +136,7 @@
         <%# ①商品画像 %>
         <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" if item.image.attached? %>
         <%# <%= image_tag "item-sample.png", class: "item-img" %>
-          
+    
         <%# ②「sold out」表示 %>
           <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
@@ -166,10 +166,6 @@
         <% end %>
       </li>
 
-
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
-      
       <% if @items.blank? then %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -189,8 +185,7 @@
         </div>
         <% end %>
       </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+
     </ul>
   </div>
   <%# /商品一覧 %>
