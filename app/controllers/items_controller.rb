@@ -22,14 +22,14 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def edit
-    @item = Item.find(params[:id])
-  end
+  # def edit
+  #   @item = Item.find(params[:id])
+  # end
 
-  def destroy
-    item = Item.find(params[:id])
-    redirect_to root_path if item.destroy
-  end
+  # def destroy
+  #   item = Item.find(params[:id])
+  #   redirect_to root_path if item.destroy
+  # end
 
   private
 

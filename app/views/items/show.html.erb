@@ -4,7 +4,7 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= "商品名" %>
+      <%= @item.name %>
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image.variant(resize: '500x500'), class: "item-box-img" if @item.image.attached? %>
@@ -28,9 +28,11 @@
     <% if user_signed_in? %>
     <%# 商品詳細画面にアクセスしたユーザーが出品者である %>
      <%  if current_user.id == @item.user_id %>
-      <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+      <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+      <%# edit_item_path(@item.id) %>
       <p class="or-text">or</p>
-      <%= link_to "削除",  item_path(@item.id), method: :delete, class:"item-destroy" %>
+      <%= link_to "削除",  "#", method: :delete, class:"item-destroy" %>
+      <%# item_path(@item.id) %>
      <% else %>
 
      <%# 商品が売れていない場合はこちらを表示しましょう %>
@@ -40,7 +42,7 @@
     <% end %>
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @item.description %></span>
     </div>
     <table class="detail-table">
       <tbody>
@@ -105,9 +107,7 @@
       後ろの商品 ＞
     </a>
   </div>
-  <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
-  <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
+  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
 </div>
 
 <%= render "shared/footer" %>
