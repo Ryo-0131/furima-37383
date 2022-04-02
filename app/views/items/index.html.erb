@@ -129,9 +129,9 @@
     <ul class='item-lists'>
 
      
-          <% @items.each do |item| %>
+      <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to '#' do %>
+        <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
         <%# ①商品画像 %>
         <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" if item.image.attached? %>
@@ -139,6 +139,7 @@
     
         <%# ②「sold out」表示 %>
           <%# 商品が売れていればsold outを表示しましょう %>
+  
           <div class='sold-out'>
           <span>Sold Out!!</span>
           </div>
