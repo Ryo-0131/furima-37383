@@ -46,7 +46,7 @@ def set_item
 end
   
 def prevent_url
-  if @item.user_id != current_user.id && @item.order.present?
+  if @item.user_id != current_user.id || @item.order.present?
     redirect_to action: :index 
   end
 end
