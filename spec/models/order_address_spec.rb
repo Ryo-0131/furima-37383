@@ -82,10 +82,25 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid. Input only number")
       end   
+      it 'phone_numberが9桁以下では保存できないこと' do
+        @order_address.phone_number = 123_456_789
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid. Input only number")
+      end   
+      it 'phone_numberが12桁以上では保存できないこと' do
+        @order_address.phone_number = 12_345_678_910_123_111
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid. Input only number")
+      end  
       it 'user情報が紐付いていないと保存できないこと' do
         @order_address.user_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item情報が紐付いていないと保存できないこと' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
       it "tokenが空では登録できないこと" do
         @order_address.token = nil

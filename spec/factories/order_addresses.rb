@@ -6,8 +6,6 @@ FactoryBot.define do
     ward { '1-1' }
     building { '東京ハイツ' }
     phone_number { 12345678912 }
-    user_id { FactoryBot.create(:user).id }
-    item_id { FactoryBot.create(:item).id }
     token {"tok_abcdefghijk00000000000000000"}
   end
 end
