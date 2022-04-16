@@ -128,44 +128,41 @@
     </div>
     <ul class='item-lists'>
 
-     
-      <% @items.each do |item| %>
+
+    <%# 商品データがある場合は、eachメソッドで一覧表示する %>
+     <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to item_path(item.id) do %>
+       <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
         <%# ①商品画像 %>
         <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" if item.image.attached? %>
-        <%# <%= image_tag "item-sample.png", class: "item-img" %>
-    
-        <%# ②「sold out」表示 %>
-          <%# 商品が売れていればsold outを表示しましょう %>
-  
-          <div class='sold-out'>
+           
+        <%# ②商品が売れていれば「sold out」表示 %>
+        <% if item.order.present? %> 
+         <div class='sold-out'>
           <span>Sold Out!!</span>
-          </div>
-          <% end %>
-          <%# //商品が売れていればsold outを表示しましょう %>
+         </div>
+        <% end %>
 
-        </div>
-
-        <%# ③商品名 %>
+       </div>
+       <%# ③商品名 %>
         <div class='item-info'>
-          <h3 class='item-name'>
-            <%= item.name %>
-          </h3>
+         <h3 class='item-name'>
+          <%= item.name %>
+         </h3>
 
-        <%# ④商品の値段 %>
-        <%# ⑤商品の配送料負担 %>
+        <%# ④商品の値段 %> <%# ⑤商品の配送料負担 %>
           <div class='item-price'>
-            <span><%= item.price %>円<br><%= item.shipping_fee_status.name %></span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
+          <span><%= item.price %>円<br><%= item.shipping_fee_status.name %></span>
+           <div class='star-btn'>
+            <%= image_tag "star.png", class:"star-icon" %>
+             <span class='star-count'>0</span>
             </div>
           </div>
         </div>
         <% end %>
       </li>
+       <% end %>
 
       <% if @items.blank? then %>
       <li class='list'>
@@ -189,7 +186,7 @@
 
     </ul>
   </div>
-  <%# /商品一覧 %>
+<%# /商品一覧 %>
 </div>
 <%= link_to("items/new", class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
